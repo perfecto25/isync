@@ -1,0 +1,19 @@
+[Unit]
+Description=iSyncPython
+
+
+[Service]
+ExecStart=/home/mreider/isync/venv/bin/python3.6 /home/mreider/isync/isync.py
+
+# Disable Python's buffering of STDOUT and STDERR, so that output from the
+# service shows up immediately in systemd's logs
+Environment=PYTHONUNBUFFERED=1
+
+# Use a dedicated user to run our service
+User=mreider
+
+
+[Install]
+# Tell systemd to automatically start this service when the system boots
+# (assuming the service is enabled)
+WantedBy=default.target
