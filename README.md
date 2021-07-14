@@ -31,7 +31,26 @@ once iSync detects a change, it will rsync the file over to the "remote" server 
 
 ## Logging
 
-you can tail the rsync logs in isync directory 
+you can tail the rsync logs in isync directory
 
     cd /opt/isync
     tail -f isync.log
+
+## SSH Sockets
+
+To reduce number of SSH handshakes due to constant rsyncing between Local and Remote, enable SSH sockets on the local isntance
+
+    mkdir /home/user/.ssh/sockets
+    vim /home/user/.ssh/config
+
+    Host <remote>
+      TCPKeepAlive yes
+      ServerAliveInterval 120
+      Compression yes
+      ControlMaster auto
+      ControlPath ~/.ssh/sockets/%r@%h:%p
+      ControlPersist yes
+      ControlPersist 480m
+
+    chmod 600 /home/user/.ssh/config
+    chmod 770 /home/user/.ssh/sockets
