@@ -1,2 +1,4 @@
 loguru
 watchdog
+pyyaml
+dictor

@@ -1,9 +1,8 @@
 [Unit]
 Description=iSyncPython
 
-
 [Service]
-ExecStart=/opt/isync/venv/bin/python3.6 /opt/isync/isync.py
+ExecStart=/opt/isync/venv/bin/python3 /opt/isync/isync.py
 
 # Disable Python's buffering of STDOUT and STDERR, so that output from the
 # service shows up immediately in systemd's logs

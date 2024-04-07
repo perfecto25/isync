@@ -6,10 +6,14 @@ INotify-based instant rsync
 
 install using virtual env
 
-    python3.6 -m venv venv
+    cd /opt
+    
+    # git clone this repo
+    
+    cd /opt/isync
+    python3 -m venv venv
     source venv/bin/activate
-
-    (venv) pip install -r requirements
+    (venv) pip install -r requirements.txt
 
 configure systemd startup script
 

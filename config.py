@@ -1,5 +1,8 @@
 ## ISYNC config
 
+syncs = [
+    
+]
 
 # folders and files to watch on this host
 paths = [
