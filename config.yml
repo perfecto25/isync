@@ -1,25 +1,25 @@
 ---
 log:
-  # path to log ie, /var/log/isync.log, or console
+  # path to log ie, /var/log/isync.log, or "console"
   destination: console
   #destination: isync.log
   # INFO, DEBUG, ERROR
   level: debug
 
 defaults:
-  priv_key: /home/user/.ssh/id_rsa
+  priv_key: /home/mreider/.ssh/ca/mreider
   interval: 20
   recurse: False
   simulate: True
 
 syncs:
   # will sync using custom parameters
-  "sync example A": ## unique name/description for each sync
+  "sync example A - single file": ## unique name/description for each sync
     source_path: /home/mreider/Downloads/testfile ## local path that will be synced to target
-    remote_host: web1
-    remote_user: qb
-    remote_path: /home/qb/temp ## remote user, remote hostname, remote path to where file will be synced to
-    priv_key: /home/jsmith/.ssh/id_rsa ## path to user's private SSH key (on the local host running Poni service)
+    remote_host: qbtm-uat
+    remote_user: mreider
+    remote_path: /home/mreider/ ## remote user, remote hostname, remote path to where file will be synced to
+    priv_key: /home/mreider/.ssh/ca/mreider ## path to user's private SSH key (on the local host running Poni service)
     port: 1122 ## custom SSH port, default = 22
     rsync_opts: azBP ## custom Rsync flags (default: -azP)
     interval: 15 ## sleep time in seconds before rsyncing on a change, default = 10
@@ -27,18 +27,18 @@ syncs:
     simulate: True ## show rsync actions in log output, but dont do actual rsync or delete actions. default = true
 
   # will sync using default SSH priv key of /home/spaceball/.ssh/id_rsa, default port 22, simulate=True, recurse=False (defaults)
-  "sync example B":
-    source_path: /tmp/file1
+  "sync example B - directory to localht":
+    source_path: /home/mreider/Downloads/testdir2
     remote_host: localhost
     remote_user: mreider
-    remote_path: /home/mreider/Downloads
+    remote_path: /home/mreider/Documents
 
   # will sync using a custom SSH priv key, and will skip simulation, will recurse entire directory for changes
-  "sync example C":
-    source_path: /tmp/file1
-    remote_host: localhost
+  "sync example C - directory to remote host":
+    source_path: /tmp/dir2
+    remote_host: qbtm-us2
     remote_user: mreider
-    remote_path: /home/mreider/Downloads/temp
-    priv_key: /home/jbond/.ssh/id_ed25519
-    simulate: False
+    remote_path: /home/mreider/Downloads/
+    priv_key: /home/mreider/.ssh/ca/mreider
+    simulate: True
     recurse: True

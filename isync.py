@@ -84,9 +84,8 @@ for sync in dictor(cfg, "syncs", checknone=True):
 
 class MonitorFolder(FileSystemEventHandler):
     def on_created(self, event):
-        remote_path = os.path.dirname(event.src_path)
-
-        logger.info(f"CREATE rsync -azpP {event.src_path} {remote_path}")
+#        logger.info(f"CREATE rsync -azpP {event.src_path}")
+        logger.debug("CREATE")
 
     def on_modified(self, event):
         logger.debug(f"MODIFIED: {event.src_path}")
